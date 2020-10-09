@@ -5,22 +5,18 @@ import scala.collection.mutable.ArrayBuffer
 
 object Solution {
     def main(args: Array[String]) {
-        println("Enter number 1: ")
         val inloop = new Breaks;
         var n_activities = scala.io.StdIn.readInt()
 
         for( i <- 1 to n_activities) {
-            println("Enter number 2: ")
             var n = scala.io.StdIn.readInt()
             var activities = new Array[Activity](n)
             
             for( x <- 0 until n) {
-                println(n + " Enter number(test)" + x +": ")
                 var reader = scala.io.StdIn.readLine()
                 var temp = reader.split(" ")
                 var activityTepm: Activity = new Activity(x.toInt, temp(0).toInt, temp(1).toInt)
                 activities(x) = activityTepm
-                println(activityTepm.startTime, activityTepm.endTime)
             }
             
             Sorting.quickSort(activities)(TimeOrdering)
@@ -43,7 +39,6 @@ object Solution {
                     if(start >= finish) {
                         ans(activities(j).index) = parents(currentParent)
                         finishTime(currentParent) = activities(j).endTime
-                        println(s"Entre ${finishTime(currentParent)}")
                     } else {
                         if(currentParent == 0) {
                             currentParent = 1
@@ -53,7 +48,6 @@ object Solution {
                         if(start >= finishTime(currentParent)) {
                             ans(activities(j).index) = parents(currentParent)
                             finishTime(currentParent) = activities(j).endTime
-                            println(s"Entre ${finishTime(currentParent)}")
                         } else {
                             isPossible = false
                             inloop.break
